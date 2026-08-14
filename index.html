@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#7a1f16" />
+  <title>Bella Massa — Pizzaria Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">🍕</div>
+      <div>
+        <strong>Bella Massa</strong>
+        <span>Pizzaria artesanal • Demo WAP</span>
+      </div>
+    </div>
+    <button class="cart-button" id="openCartBtn" aria-label="Abrir carrinho">
+      🛒 <span id="cartCount">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="badge">Pizzaria fictícia para demonstração</span>
+        <h1>Seu pedido, do seu jeito.</h1>
+        <p>Escolha sabores, monte meio a meio e finalize direto no WhatsApp.</p>
+        <button class="primary" onclick="document.querySelector('#cardapio').scrollIntoView({behavior:'smooth'})">
+          Ver cardápio
+        </button>
+      </div>
+      <div class="pizza-visual" aria-label="Ilustração de pizza">
+        <div class="pizza">
+          <span class="pep p1"></span><span class="pep p2"></span><span class="pep p3"></span>
+          <span class="pep p4"></span><span class="pep p5"></span><span class="pep p6"></span>
+          <span class="leaf l1"></span><span class="leaf l2"></span><span class="leaf l3"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="assist-card">
+      <div class="migo" aria-hidden="true">
+        <div class="head">
+          <div class="glasses g1"></div><div class="glasses g2"></div>
+          <div class="bridge"></div>
+          <div class="eye e1"></div><div class="eye e2"></div>
+          <div class="smile"></div>
+        </div>
+      </div>
+      <div>
+        <small>Consultor Migo</small>
+        <h2 id="migoTitle">O que combina com sua fome hoje?</h2>
+        <p id="migoText">Posso te ajudar a escolher entre tradicionais, especiais e doces.</p>
+        <div class="chips">
+          <button data-filter="tradicional">Tradicionais</button>
+          <button data-filter="especial">Especiais</button>
+          <button data-filter="doce">Doces</button>
+          <button data-filter="all">Ver tudo</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cardapio">
+      <div class="section-title">
+        <div>
+          <span class="eyebrow">Cardápio</span>
+          <h2>Escolha sua pizza</h2>
+        </div>
+        <div class="search-wrap">
+          <input id="searchInput" type="search" placeholder="Buscar sabor..." />
+        </div>
+      </div>
+
+      <div class="category-tabs">
+        <button class="tab active" data-filter="all">Todas</button>
+        <button class="tab" data-filter="tradicional">Tradicionais</button>
+        <button class="tab" data-filter="especial">Especiais</button>
+        <button class="tab" data-filter="doce">Doces</button>
+        <button class="tab" data-filter="bebida">Bebidas</button>
+      </div>
+
+      <div class="menu-grid" id="menuGrid"></div>
+    </section>
+
+    <section class="section benefits">
+      <article><span>⚡</span><div><strong>Pedido rápido</strong><small>Sem instalar aplicativo.</small></div></article>
+      <article><span>🍕</span><div><strong>Meio a meio</strong><small>Escolha até dois sabores.</small></div></article>
+      <article><span>📲</span><div><strong>Finaliza no WhatsApp</strong><small>Pedido já vai organizado.</small></div></article>
+    </section>
+  </main>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-header">
+      <div>
+        <small>Seu pedido</small>
+        <h2>Carrinho</h2>
+      </div>
+      <button class="icon-btn" id="closeCartBtn">✕</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+
+    <div class="order-form">
+      <h3>Entrega</h3>
+      <div class="delivery-toggle">
+        <label><input type="radio" name="delivery" value="Entrega" checked /> Entrega</label>
+        <label><input type="radio" name="delivery" value="Retirada" /> Retirada</label>
+      </div>
+      <input id="customerName" placeholder="Seu nome" />
+      <input id="customerPhone" placeholder="Telefone" />
+      <input id="customerAddress" placeholder="Endereço" />
+      <textarea id="customerNote" placeholder="Observações do pedido"></textarea>
+    </div>
+
+    <div class="summary">
+      <div><span>Subtotal</span><strong id="subtotal">R$ 0,00</strong></div>
+      <div><span>Taxa de entrega</span><strong id="deliveryFee">R$ 6,00</strong></div>
+      <div class="total"><span>Total</span><strong id="total">R$ 6,00</strong></div>
+    </div>
+
+    <button class="whatsapp-btn" id="checkoutBtn">Finalizar pelo WhatsApp</button>
+  </aside>
+  <div class="backdrop" id="backdrop"></div>
+
+  <div class="modal" id="productModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="icon-btn modal-close" id="closeModalBtn">✕</button>
+      <span class="eyebrow" id="modalCategory"></span>
+      <h2 id="modalName"></h2>
+      <p id="modalDesc"></p>
+
+      <div class="option-block" id="sizeBlock">
+        <h3>Tamanho</h3>
+        <div class="size-options" id="sizeOptions"></div>
+      </div>
+
+      <div class="option-block" id="halfBlock">
+        <label class="check-row">
+          <input type="checkbox" id="halfToggle" />
+          <span>Quero meio a meio</span>
+        </label>
+        <select id="halfFlavorSelect">
+          <option value="">Escolha o segundo sabor</option>
+        </select>
+      </div>
+
+      <div class="option-block" id="extrasBlock">
+        <h3>Adicionais</h3>
+        <label class="check-row"><input type="checkbox" class="extra" data-name="Borda de catupiry" data-price="8" /> Borda de catupiry (+R$ 8,00)</label>
+        <label class="check-row"><input type="checkbox" class="extra" data-name="Borda de cheddar" data-price="8" /> Borda de cheddar (+R$ 8,00)</label>
+        <label class="check-row"><input type="checkbox" class="extra" data-name="Queijo extra" data-price="6" /> Queijo extra (+R$ 6,00)</label>
+      </div>
+
+      <div class="modal-footer">
+        <div>
+          <small>A partir de</small>
+          <strong id="modalPrice">R$ 0,00</strong>
+        </div>
+        <button class="primary" id="addToCartBtn">Adicionar ao carrinho</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <strong>Bella Massa</strong>
+    <span>Projeto demonstrativo • WAP Consultoria Digital</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

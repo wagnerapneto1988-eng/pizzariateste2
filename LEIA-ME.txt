@@ -1,0 +1,33 @@
+BELLA MASSA — PIZZARIA DEMO
+Projeto demonstrativo WAP Consultoria Digital
+
+COMO ABRIR
+1. Descompacte o ZIP.
+2. Abra o arquivo index.html no navegador.
+3. O projeto funciona sem servidor e sem banco de dados.
+
+RECURSOS
+- Cardápio responsivo
+- Busca e categorias
+- Escolha de tamanho
+- Pizza meio a meio
+- Adicionais
+- Carrinho
+- Entrega ou retirada
+- Taxa de entrega
+- Formulário do cliente
+- Finalização pelo WhatsApp
+- Consultor Migo com animações leves
+- Layout adaptado para celular
+
+IMPORTANTE
+O número de WhatsApp é fictício:
+5511999999999
+
+Para trocar, abra script.js e procure:
+const whatsappNumber="5511999999999";
+
+Os produtos e preços também ficam no início do arquivo script.js,
+na constante "products".
+
+Este é um protótipo comercial. Não possui banco de dados nem pagamento online.
