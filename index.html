@@ -1,173 +1,140 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#7a1f16" />
-  <title>Bella Massa — Pizzaria Demo</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0b">
+  <title>Bella Massa Pizzaria | Delivery</title>
+  <meta name="description" content="Bella Massa Pizzaria — pizzas artesanais, delivery rápido e pedido pelo WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&family=Lobster&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">
-      <div class="brand-mark" aria-hidden="true">🍕</div>
-      <div>
-        <strong>Bella Massa</strong>
-        <span>Pizzaria artesanal • Demo WAP</span>
-      </div>
-    </div>
-    <button class="cart-button" id="openCartBtn" aria-label="Abrir carrinho">
-      🛒 <span id="cartCount">0</span>
-    </button>
+    <a href="#inicio" class="brand">
+      <img src="assets/logo.jpg" alt="Bella Massa Pizzaria">
+    </a>
+    <nav>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="cart-pill" id="openCart">🛒 <span id="cartCount">0</span></button>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <span class="badge">Pizzaria fictícia para demonstração</span>
-        <h1>Seu pedido, do seu jeito.</h1>
-        <p>Escolha sabores, monte meio a meio e finalize direto no WhatsApp.</p>
-        <button class="primary" onclick="document.querySelector('#cardapio').scrollIntoView({behavior:'smooth'})">
-          Ver cardápio
-        </button>
-      </div>
-      <div class="pizza-visual" aria-label="Ilustração de pizza">
-        <div class="pizza">
-          <span class="pep p1"></span><span class="pep p2"></span><span class="pep p3"></span>
-          <span class="pep p4"></span><span class="pep p5"></span><span class="pep p6"></span>
-          <span class="leaf l1"></span><span class="leaf l2"></span><span class="leaf l3"></span>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <div class="eyebrow">🍕 PIZZAS ARTESANAIS • DELIVERY RÁPIDO</div>
+        <h1>FAÇA SEU<br><span>PEDIDO!</span></h1>
+        <p>As melhores pizzas, feitas com ingredientes selecionados e <strong>muito amor.</strong></p>
+        <div class="hero-badges">
+          <span>🍕 Artesanais</span>
+          <span>🌿 Ingredientes frescos</span>
+          <span>🔥 Forno a lenha</span>
         </div>
+        <a class="cta whatsapp" href="https://wa.me/5511988555913?text=Olá%20Bella%20Massa!%20Quero%20fazer%20um%20pedido." target="_blank" rel="noopener">
+          <span class="wa-icon">☎</span>
+          <span><b>FAZER PEDIDO AGORA</b><small>Fale com a gente no WhatsApp</small></span>
+        </a>
+      </div>
+      <div class="hero-visual">
+        <img class="hero-pizza" src="assets/hero-pizza.jpg" alt="Pizza artesanal saindo fumacinha">
+        <div class="steam steam1">〰</div>
+        <div class="steam steam2">〰</div>
+        <div class="steam steam3">〰</div>
+        <div class="delivery-ribbon">🛵<b>DELIVERY<br>RÁPIDO</b><small>Quentinha até você!</small></div>
+        <img class="delivery-bike" src="assets/delivery.jpg" alt="Motoboy de delivery">
       </div>
     </section>
 
-    <section class="assist-card">
-      <div class="migo" aria-hidden="true">
-        <div class="head">
-          <div class="glasses g1"></div><div class="glasses g2"></div>
-          <div class="bridge"></div>
-          <div class="eye e1"></div><div class="eye e2"></div>
-          <div class="smile"></div>
-        </div>
-      </div>
-      <div>
-        <small>Consultor Migo</small>
-        <h2 id="migoTitle">O que combina com sua fome hoje?</h2>
-        <p id="migoText">Posso te ajudar a escolher entre tradicionais, especiais e doces.</p>
-        <div class="chips">
-          <button data-filter="tradicional">Tradicionais</button>
-          <button data-filter="especial">Especiais</button>
-          <button data-filter="doce">Doces</button>
-          <button data-filter="all">Ver tudo</button>
-        </div>
-      </div>
+    <section class="service-strip">
+      <div>⏱️ <span><b>DELIVERY</b><small>RÁPIDO</small></span></div>
+      <div>💬 <span><b>PEDIDOS</b><small>PELO WHATSAPP</small></span></div>
+      <div>💳 <span><b>PAGAMENTO</b><small>FACILITADO</small></span></div>
     </section>
 
-    <section class="section" id="cardapio">
-      <div class="section-title">
+    <section class="menu-section" id="cardapio">
+      <div class="section-head">
         <div>
-          <span class="eyebrow">Cardápio</span>
-          <h2>Escolha sua pizza</h2>
+          <span class="section-kicker">CARDÁPIO DIGITAL</span>
+          <h2>NOSSAS PIZZAS</h2>
         </div>
-        <div class="search-wrap">
-          <input id="searchInput" type="search" placeholder="Buscar sabor..." />
+        <div class="filters" id="filters">
+          <button class="active" data-filter="todas">Todas</button>
+          <button data-filter="classicas">Clássicas</button>
+          <button data-filter="especiais">Especiais</button>
+          <button data-filter="doces">Doces</button>
         </div>
       </div>
-
-      <div class="category-tabs">
-        <button class="tab active" data-filter="all">Todas</button>
-        <button class="tab" data-filter="tradicional">Tradicionais</button>
-        <button class="tab" data-filter="especial">Especiais</button>
-        <button class="tab" data-filter="doce">Doces</button>
-        <button class="tab" data-filter="bebida">Bebidas</button>
-      </div>
-
-      <div class="menu-grid" id="menuGrid"></div>
+      <div class="pizza-grid" id="pizzaGrid"></div>
     </section>
 
-    <section class="section benefits">
-      <article><span>⚡</span><div><strong>Pedido rápido</strong><small>Sem instalar aplicativo.</small></div></article>
-      <article><span>🍕</span><div><strong>Meio a meio</strong><small>Escolha até dois sabores.</small></div></article>
-      <article><span>📲</span><div><strong>Finaliza no WhatsApp</strong><small>Pedido já vai organizado.</small></div></article>
+    <section class="how" id="como-funciona">
+      <h2>COMO FUNCIONA</h2>
+      <div class="steps">
+        <article><span>1</span><div class="step-icon">🍕</div><h3>ESCOLHA</h3><p>Selecione suas pizzas favoritas.</p></article>
+        <article><span>2</span><div class="step-icon">🛒</div><h3>MONTE O PEDIDO</h3><p>Adicione quantidades e confira o carrinho.</p></article>
+        <article><span>3</span><div class="step-icon">💬</div><h3>CONFIRME</h3><p>Envie o pedido completo pelo WhatsApp.</p></article>
+        <article><span>4</span><div class="step-icon">🛵</div><h3>RECEBA</h3><p>Aguarde sua pizza chegar quentinha.</p></article>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <h2>POR QUE ESCOLHER A <span>BELLA MASSA?</span></h2>
+      <div class="benefit-grid">
+        <div>🏅<b>QUALIDADE PREMIUM</b></div>
+        <div>🌿<b>INGREDIENTES SELECIONADOS</b></div>
+        <div>🔥<b>FORNO A LENHA</b></div>
+        <div>❤️<b>FEITA COM AMOR</b></div>
+      </div>
+    </section>
+
+    <section class="contact" id="contato">
+      <img src="assets/logo.jpg" alt="Bella Massa">
+      <div>
+        <h2>FALE CONOSCO</h2>
+        <p class="phone">💬 (11) 9 8855-5913</p>
+        <p>📷 @bellamassa.pizzaria</p>
+        <p>📍 Taboão da Serra - SP</p>
+      </div>
+      <a class="cta whatsapp compact" href="https://wa.me/5511988555913" target="_blank" rel="noopener">CHAMAR NO WHATSAPP</a>
     </section>
   </main>
 
   <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
     <div class="cart-header">
-      <div>
-        <small>Seu pedido</small>
-        <h2>Carrinho</h2>
-      </div>
-      <button class="icon-btn" id="closeCartBtn">✕</button>
+      <h2>Seu pedido</h2>
+      <button id="closeCart" aria-label="Fechar carrinho">✕</button>
     </div>
     <div id="cartItems" class="cart-items"></div>
-
-    <div class="order-form">
-      <h3>Entrega</h3>
-      <div class="delivery-toggle">
-        <label><input type="radio" name="delivery" value="Entrega" checked /> Entrega</label>
-        <label><input type="radio" name="delivery" value="Retirada" /> Retirada</label>
-      </div>
-      <input id="customerName" placeholder="Seu nome" />
-      <input id="customerPhone" placeholder="Telefone" />
-      <input id="customerAddress" placeholder="Endereço" />
-      <textarea id="customerNote" placeholder="Observações do pedido"></textarea>
+    <div class="customer-fields">
+      <input id="customerName" placeholder="Seu nome">
+      <select id="orderType">
+        <option value="Entrega">Entrega</option>
+        <option value="Retirada">Retirada no local</option>
+      </select>
+      <input id="address" placeholder="Endereço para entrega">
+      <select id="payment">
+        <option value="Pix">Pix</option>
+        <option value="Dinheiro">Dinheiro</option>
+        <option value="Cartão na entrega">Cartão na entrega</option>
+      </select>
+      <textarea id="notes" placeholder="Observações do pedido"></textarea>
     </div>
-
-    <div class="summary">
-      <div><span>Subtotal</span><strong id="subtotal">R$ 0,00</strong></div>
-      <div><span>Taxa de entrega</span><strong id="deliveryFee">R$ 6,00</strong></div>
-      <div class="total"><span>Total</span><strong id="total">R$ 6,00</strong></div>
-    </div>
-
-    <button class="whatsapp-btn" id="checkoutBtn">Finalizar pelo WhatsApp</button>
+    <div class="cart-total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
+    <button class="checkout" id="checkout">FINALIZAR PELO WHATSAPP</button>
   </aside>
-  <div class="backdrop" id="backdrop"></div>
+  <div class="overlay" id="overlay"></div>
 
-  <div class="modal" id="productModal" aria-hidden="true">
-    <div class="modal-card">
-      <button class="icon-btn modal-close" id="closeModalBtn">✕</button>
-      <span class="eyebrow" id="modalCategory"></span>
-      <h2 id="modalName"></h2>
-      <p id="modalDesc"></p>
-
-      <div class="option-block" id="sizeBlock">
-        <h3>Tamanho</h3>
-        <div class="size-options" id="sizeOptions"></div>
-      </div>
-
-      <div class="option-block" id="halfBlock">
-        <label class="check-row">
-          <input type="checkbox" id="halfToggle" />
-          <span>Quero meio a meio</span>
-        </label>
-        <select id="halfFlavorSelect">
-          <option value="">Escolha o segundo sabor</option>
-        </select>
-      </div>
-
-      <div class="option-block" id="extrasBlock">
-        <h3>Adicionais</h3>
-        <label class="check-row"><input type="checkbox" class="extra" data-name="Borda de catupiry" data-price="8" /> Borda de catupiry (+R$ 8,00)</label>
-        <label class="check-row"><input type="checkbox" class="extra" data-name="Borda de cheddar" data-price="8" /> Borda de cheddar (+R$ 8,00)</label>
-        <label class="check-row"><input type="checkbox" class="extra" data-name="Queijo extra" data-price="6" /> Queijo extra (+R$ 6,00)</label>
-      </div>
-
-      <div class="modal-footer">
-        <div>
-          <small>A partir de</small>
-          <strong id="modalPrice">R$ 0,00</strong>
-        </div>
-        <button class="primary" id="addToCartBtn">Adicionar ao carrinho</button>
-      </div>
-    </div>
-  </div>
+  <a class="floating-wa" href="https://wa.me/5511988555913" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
 
   <footer>
-    <strong>Bella Massa</strong>
-    <span>Projeto demonstrativo • WAP Consultoria Digital</span>
+    <span>BELLA MASSA PIZZARIA</span>
+    <span>❤️ A melhor pizza, na sua melhor companhia!</span>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>
