@@ -147,7 +147,6 @@ async function supabaseRest(path, params = {}){
   const res = await fetch(endpoint, {
     headers: {
       apikey: key,
-      Authorization: `Bearer ${key}`,
       Accept: "application/json"
     },
     cache: "no-store"
