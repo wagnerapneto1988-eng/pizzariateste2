@@ -137,30 +137,81 @@ document.querySelector("#checkout").addEventListener("click",()=>{
   window.open(whatsappLink(msg),"_blank");
 });
 
+async function supabaseRest(path, params = {}){
+  const cfg = window.WAP_CONFIG || {};
+  const url = cfg.SUPABASE_URL || "https://fqmjfhgxapssqrpxzfnw.supabase.co";
+  const key = cfg.SUPABASE_ANON_KEY || "sb_publishable_oEr35MM3vFxy_Pg9t0W_gQ_c9DxxskL";
+
+  const qs = new URLSearchParams(params);
+  const endpoint = `${url}/rest/v1/${path}?${qs.toString()}`;
+  const res = await fetch(endpoint, {
+    headers: {
+      apikey: key,
+      Authorization: `Bearer ${key}`,
+      Accept: "application/json"
+    },
+    cache: "no-store"
+  });
+
+  if(!res.ok){
+    const detail = await res.text();
+    throw new Error(`Supabase REST ${res.status}: ${detail}`);
+  }
+  return res.json();
+}
+
 async function boot(){
   const slug = new URLSearchParams(location.search).get("cliente") || "bella-massa-demo";
-  const cfg = window.WAP_CONFIG || {};
-  const keyOk = cfg.SUPABASE_ANON_KEY && !cfg.SUPABASE_ANON_KEY.includes("COLE_AQUI");
-  if(!window.supabase || !cfg.SUPABASE_URL || !keyOk){
-    console.warn("Supabase ainda não configurado. Usando dados locais de fallback.");
-    applyEmpresa({nome:"Pizzaria Bella Massa Demo",slug,cidade:"Taboão da Serra",estado:"SP",instagram_url:"https://instagram.com/bellamassa.pizzaria",whatsapp:"",logo_url:"assets/logo.jpg"});
-    pizzas = fallbackPizzas; renderFilters(); renderPizzas(); updateCart(); return;
-  }
+  console.info("WAP Demo: carregando cliente", slug);
+
   try{
-    const db = window.supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY);
-    const {data:e,error:eErr} = await db.from("empresas_demo").select("*").eq("slug",slug).single();
-    if(eErr) throw eErr;
+    // REST direto: evita depender do carregamento do SDK do Supabase no navegador.
+    const empresas = await supabaseRest("empresas_demo", {
+      select: "*",
+      slug: `eq.${slug}`,
+      limit: "1"
+    });
+
+    if(!empresas.length) throw new Error(`Cliente '${slug}' não encontrado em empresas_demo.`);
+    const e = empresas[0];
     applyEmpresa(e);
-    const {data:prod,error:pErr} = await db.from("produtos_demo").select("*").eq("empresa_id",e.id).eq("ativo",true).order("id");
-    if(pErr) throw pErr;
-    pizzas = (prod || []).map(p=>({id:p.id,nome:p.nome,categoria:p.categoria || "Cardápio",desc:p.descricao,preco:Number(p.preco || 0),img:p.imagem_url || imageFallback(p.nome)}));
+
+    const prod = await supabaseRest("produtos_demo", {
+      select: "*",
+      empresa_id: `eq.${e.id}`,
+      ativo: "eq.true",
+      order: "id.asc"
+    });
+
+    pizzas = (prod || []).map(p=>({
+      id:p.id,
+      nome:p.nome,
+      categoria:p.categoria || "Cardápio",
+      desc:p.descricao,
+      preco:Number(p.preco || 0),
+      img:p.imagem_url || imageFallback(p.nome)
+    }));
+
     if(!pizzas.length) pizzas = fallbackPizzas;
     renderFilters(); renderPizzas(); updateCart();
+    console.info("WAP Demo: Supabase carregado com sucesso", {empresa:e.nome, produtos:pizzas.length});
   }catch(err){
-    console.error(err);
-    alert("Não foi possível carregar esta demonstração do banco. Exibindo o modelo local.");
-    applyEmpresa({nome:"Pizzaria Bella Massa Demo",slug,cidade:"Taboão da Serra",estado:"SP",whatsapp:"",logo_url:"assets/logo.jpg"});
-    pizzas = fallbackPizzas; renderFilters(); renderPizzas(); updateCart();
+    console.error("WAP Demo: falha ao carregar Supabase", err);
+    applyEmpresa({
+      nome:"Pizzaria Bella Massa Demo",
+      slug,
+      cidade:"Taboão da Serra",
+      estado:"SP",
+      instagram_url:"https://instagram.com/bellamassa.pizzaria",
+      whatsapp:"",
+      logo_url:"assets/logo.jpg"
+    });
+    pizzas = fallbackPizzas;
+    renderFilters(); renderPizzas(); updateCart();
+
+    // Mantém a demo utilizável, mas deixa o erro explícito no console.
+    const badge = document.querySelector(".demo-badge");
+    if(badge) badge.title = "Fallback local ativo — verifique o Console do navegador.";
   }
 }
 boot();
