@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b0b0b">
-  <title>Bella Massa Pizzaria | Delivery</title>
-  <meta name="description" content="Bella Massa Pizzaria — pizzas artesanais, delivery rápido e pedido pelo WhatsApp.">
+  <title id="pageTitle">Delivery | Demonstração WAP</title>
+  <meta id="pageDescription" name="description" content="Demonstração personalizada de delivery digital.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&family=Lobster&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
 <body>
   <header class="topbar">
     <a href="#inicio" class="brand">
-      <img src="assets/logo.jpg" alt="Bella Massa Pizzaria">
+      <img id="brandLogo" src="assets/logo.jpg" alt="Pizzaria">
     </a>
     <nav>
       <a href="#cardapio">Cardápio</a>
@@ -27,7 +27,7 @@
   <main>
     <section class="hero" id="inicio">
       <div class="hero-copy">
-        <div class="eyebrow">🍕 PIZZAS ARTESANAIS • DELIVERY RÁPIDO</div>
+        <div class="eyebrow" id="heroEyebrow">🍕 PIZZAS ARTESANAIS • DELIVERY RÁPIDO</div>
         <h1>FAÇA SEU<br><span>PEDIDO!</span></h1>
         <p>As melhores pizzas, feitas com ingredientes selecionados e <strong>muito amor.</strong></p>
         <div class="hero-badges">
@@ -35,7 +35,7 @@
           <span>🌿 Ingredientes frescos</span>
           <span>🔥 Forno a lenha</span>
         </div>
-        <a class="cta whatsapp" href="https://wa.me/5511988555913?text=Olá%20Bella%20Massa!%20Quero%20fazer%20um%20pedido." target="_blank" rel="noopener">
+        <a class="cta whatsapp" id="heroWhatsapp" href="#" target="_blank" rel="noopener">
           <span class="wa-icon">☎</span>
           <span><b>FAZER PEDIDO AGORA</b><small>Fale com a gente no WhatsApp</small></span>
         </a>
@@ -62,12 +62,7 @@
           <span class="section-kicker">CARDÁPIO DIGITAL</span>
           <h2>NOSSAS PIZZAS</h2>
         </div>
-        <div class="filters" id="filters">
-          <button class="active" data-filter="todas">Todas</button>
-          <button data-filter="classicas">Clássicas</button>
-          <button data-filter="especiais">Especiais</button>
-          <button data-filter="doces">Doces</button>
-        </div>
+        <div class="filters" id="filters"><button class="active" data-filter="todas">Todas</button></div>
       </div>
       <div class="pizza-grid" id="pizzaGrid"></div>
     </section>
@@ -83,7 +78,7 @@
     </section>
 
     <section class="benefits">
-      <h2>POR QUE ESCOLHER A <span>BELLA MASSA?</span></h2>
+      <h2>POR QUE ESCOLHER A <span id="benefitBrand">SUA PIZZARIA?</span></h2>
       <div class="benefit-grid">
         <div>🏅<b>QUALIDADE PREMIUM</b></div>
         <div>🌿<b>INGREDIENTES SELECIONADOS</b></div>
@@ -93,14 +88,14 @@
     </section>
 
     <section class="contact" id="contato">
-      <img src="assets/logo.jpg" alt="Bella Massa">
+      <img id="contactLogo" src="assets/logo.jpg" alt="Pizzaria">
       <div>
         <h2>FALE CONOSCO</h2>
-        <p class="phone">💬 (11) 9 8855-5913</p>
-        <p>📷 @bellamassa.pizzaria</p>
-        <p>📍 Taboão da Serra - SP</p>
+        <p class="phone" id="contactPhone">💬 WhatsApp</p>
+        <p id="contactInstagram">📷 Instagram</p>
+        <p id="contactLocation">📍 Localização</p>
       </div>
-      <a class="cta whatsapp compact" href="https://wa.me/5511988555913" target="_blank" rel="noopener">CHAMAR NO WHATSAPP</a>
+      <a class="cta whatsapp compact" id="contactWhatsapp" href="#" target="_blank" rel="noopener">CHAMAR NO WHATSAPP</a>
     </section>
   </main>
 
@@ -129,12 +124,15 @@
   </aside>
   <div class="overlay" id="overlay"></div>
 
-  <a class="floating-wa" href="https://wa.me/5511988555913" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+  <a class="floating-wa" id="floatingWhatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
 
   <footer>
-    <span>BELLA MASSA PIZZARIA</span>
+    <span id="footerBrand">DEMONSTRAÇÃO DELIVERY</span>
     <span>❤️ A melhor pizza, na sua melhor companhia!</span>
   </footer>
+  <div id="demoBadge" class="demo-badge">DEMONSTRAÇÃO WAP</div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

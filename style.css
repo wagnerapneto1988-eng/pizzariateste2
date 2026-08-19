@@ -94,3 +94,6 @@ footer{display:flex;justify-content:center;gap:35px;flex-wrap:wrap;padding:15px;
   .menu-section,.how,.benefits,.contact{margin-left:18px;margin-right:18px}.pizza-grid{grid-template-columns:1fr 1fr;gap:10px}.card img{height:125px}.card-body{padding:11px}.card p{display:none}.price{font-size:.96rem}.add-btn{font-size:.72rem;padding:8px}
   .steps,.benefit-grid{grid-template-columns:1fr 1fr;gap:12px}.how{padding:20px 14px}.contact{padding:20px}.filters{overflow:auto;flex-wrap:nowrap;width:100%;padding-bottom:4px}
 }
+
+/* WAP Migo — complementos do motor de demos */
+.demo-badge{position:fixed;left:16px;bottom:16px;z-index:40;background:#111;color:#fff;border:1px solid rgba(255,255,255,.18);padding:8px 12px;border-radius:999px;font:700 11px/1 Inter,sans-serif;letter-spacing:.08em;box-shadow:0 8px 24px rgba(0,0,0,.28);opacity:.9}
